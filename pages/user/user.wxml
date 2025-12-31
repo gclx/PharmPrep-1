@@ -1,0 +1,93 @@
+<!-- pages/user/user.wxml -->
+<view class="page-container">
+  <!-- 用户信息卡片 -->
+  <view class="card-container user-info-card">
+    <view class="user-avatar">
+      <image src="/images/avatar/default.png" mode="aspectFit"></image>
+    </view>
+    <view class="user-detail">
+      <view class="user-name">药学考研用户</view>
+      <view class="user-desc">开始你的考研之旅吧！</view>
+    </view>
+    <view class="user-edit" bindtap="editUserInfo">
+      <text class="edit-text">编辑资料</text>
+      <image src="/images/icons/edit.png" mode="aspectFit" class="edit-icon"></image>
+    </view>
+  </view>
+
+  <!-- 学习统计 -->
+  <view class="card-container">
+    <view class="section-title">学习统计</view>
+    <view class="stats-grid">
+      <view class="stat-item">
+        <view class="stat-value">{{totalQuestions}}</view>
+        <view class="stat-label">总题数</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-value">{{correctQuestions}}</view>
+        <view class="stat-label">答对题数</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-value">{{accuracy}}%</view>
+        <view class="stat-label">正确率</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-value">{{studyDays}}</view>
+        <view class="stat-label">学习天数</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 功能菜单 -->
+  <view class="card-container">
+    <view class="menu-item" bindtap="navigateToCollection">
+      <view class="menu-left">
+        <view class="menu-icon">❤️</view>
+        <view class="menu-text">我的收藏</view>
+      </view>
+      <view class="menu-right">
+        <text class="menu-arrow">→</text>
+      </view>
+    </view>
+    <view class="menu-item" bindtap="navigateToWrong">
+      <view class="menu-left">
+        <view class="menu-icon">❌</view>
+        <view class="menu-text">我的错题</view>
+      </view>
+      <view class="menu-right">
+        <text class="menu-arrow">→</text>
+      </view>
+    </view>
+    <view class="menu-item" bindtap="navigateToStudyPlan">
+      <view class="menu-left">
+        <view class="menu-icon">📅</view>
+        <view class="menu-text">学习计划</view>
+      </view>
+      <view class="menu-right">
+        <text class="menu-arrow">→</text>
+      </view>
+    </view>
+    <view class="menu-item" bindtap="navigateToSettings">
+      <view class="menu-left">
+        <view class="menu-icon">⚙️</view>
+        <view class="menu-text">设置</view>
+      </view>
+      <view class="menu-right">
+        <text class="menu-arrow">→</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 关于我们 -->
+  <view class="card-container">
+    <view class="menu-item" bindtap="navigateToAbout">
+      <view class="menu-left">
+        <view class="menu-icon">ℹ️</view>
+        <view class="menu-text">关于我们</view>
+      </view>
+      <view class="menu-right">
+        <text class="menu-arrow">→</text>
+      </view>
+    </view>
+  </view>
+</view>

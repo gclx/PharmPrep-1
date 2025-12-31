@@ -1,0 +1,41 @@
+<!-- pages/trueExam/trueExam.wxml -->
+<view class="page-container">
+  <view class="card-container">
+    <view class="section-title">高校真题合集</view>
+    <view class="exam-filter">
+      <view class="filter-section">
+        <view class="filter-label">年份</view>
+        <picker bindchange="bindYearChange" value="{{yearIndex}}" range="{{yearOptions}}">
+          <view class="filter-value">{{yearOptions[yearIndex]}}</view>
+        </picker>
+      </view>
+      <view class="filter-section">
+        <view class="filter-label">学科</view>
+        <picker bindchange="bindSubjectChange" value="{{subjectIndex}}" range="{{subjectOptions}}">
+          <view class="filter-value">{{subjectOptions[subjectIndex]}}</view>
+        </picker>
+      </view>
+    </view>
+  </view>
+
+  <view class="card-container">
+    <view class="exam-list">
+      <view class="exam-item" wx:for="{{examList}}" wx:key="id" bindtap="showExamDetail" data-exam-id="{{item.id}}">
+        <view class="exam-header">
+          <view class="exam-name">{{item.name}}</view>
+          <view class="exam-year">{{item.year}}年</view>
+        </view>
+        <view class="exam-info">
+          <view class="exam-subject">{{item.subject}}</view>
+          <view class="exam-status" wx:if="{{item.isNew}}">
+            <view class="new-tag">新</view>
+          </view>
+        </view>
+        <view class="exam-footer">
+          <view class="exam-download">{{item.downloadCount}}次下载</view>
+          <view class="exam-arrow">→</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

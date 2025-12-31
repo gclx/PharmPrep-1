@@ -1,0 +1,63 @@
+<!-- pages/exercise/exercise.wxml -->
+<view class="page-container">
+  <view class="card-container">
+    <view class="section-title">习题选择速刷</view>
+    <view class="subject-list">
+      <view class="subject-item" wx:for="{{subjectList}}" wx:key="id" bindtap="selectSubject" data-subject-id="{{item.id}}">
+        <view class="subject-icon">{{item.icon}}</view>
+        <view class="subject-info">
+          <view class="subject-name">{{item.name}}</view>
+          <view class="subject-count">{{item.count}}道题</view>
+        </view>
+        <view class="subject-arrow">→</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="card-container">
+    <view class="section-title">练习模式</view>
+    <view class="mode-grid">
+      <view class="mode-item" bindtap="selectMode" data-mode="random">
+        <view class="mode-icon">🎲</view>
+        <view class="mode-name">随机练习</view>
+        <view class="mode-desc">随机抽取题目</view>
+      </view>
+      <view class="mode-item" bindtap="selectMode" data-mode="chapter">
+        <view class="mode-icon">📚</view>
+        <view class="mode-name">章节练习</view>
+        <view class="mode-desc">按章节练习</view>
+      </view>
+      <view class="mode-item" bindtap="selectMode" data-mode="wrong">
+        <view class="mode-icon">❌</view>
+        <view class="mode-name">错题重练</view>
+        <view class="mode-desc">只练错题</view>
+      </view>
+      <view class="mode-item" bindtap="selectMode" data-mode="simulate">
+        <view class="mode-icon">⏱️</view>
+        <view class="mode-name">模拟考试</view>
+        <view class="mode-desc">限时模拟</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="card-container">
+    <view class="section-title">最近练习</view>
+    <view class="recent-list" wx:if="{{recentList.length > 0}}">
+      <view class="recent-item" wx:for="{{recentList}}" wx:key="id">
+        <view class="recent-info">
+          <view class="recent-subject">{{item.subject}}</view>
+          <view class="recent-time">{{item.time}}</view>
+        </view>
+        <view class="recent-stats">
+          <view class="recent-correct">{{item.correct}}/10</view>
+          <view class="recent-score">{{item.score}}分</view>
+        </view>
+      </view>
+    </view>
+    <view class="empty-state" wx:else>
+      <view class="empty-icon">📝</view>
+      <view class="empty-text">还没有练习记录</view>
+      <view class="empty-desc">开始你的第一次练习吧！</view>
+    </view>
+  </view>
+</view>

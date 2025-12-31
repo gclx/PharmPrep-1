@@ -1,0 +1,39 @@
+<!-- pages/knowledge/knowledge.wxml -->
+<view class="page-container">
+  <view class="card-container">
+    <view class="section-title">知识点速记</view>
+    <view class="knowledge-tabs">
+      <view class="tab-item {{activeTab === item.id ? 'active' : ''}}" wx:for="{{knowledgeTabs}}" wx:key="id" bindtap="switchTab" data-tab-id="{{item.id}}">
+        {{item.name}}
+      </view>
+    </view>
+  </view>
+
+  <view class="card-container">
+    <view class="knowledge-list">
+      <view class="knowledge-item" wx:for="{{knowledgeList}}" wx:key="id" bindtap="showKnowledgeDetail" data-knowledge-id="{{item.id}}">
+        <view class="knowledge-number">{{item.number}}</view>
+        <view class="knowledge-content">
+          <view class="knowledge-title">{{item.title}}</view>
+          <view class="knowledge-desc">{{item.desc}}</view>
+          <view class="knowledge-tags">
+            <view class="tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="tag">{{tag}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="card-container">
+    <view class="section-title">学习进度</view>
+    <view class="progress-content">
+      <view class="progress-item" wx:for="{{progressList}}" wx:key="id">
+        <view class="progress-label">{{item.subject}}</view>
+        <view class="progress-bar">
+          <view class="progress-fill" style="width: {{item.progress}}%"></view>
+        </view>
+        <view class="progress-percent">{{item.progress}}%</view>
+      </view>
+    </view>
+  </view>
+</view>

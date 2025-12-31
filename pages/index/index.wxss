@@ -1,0 +1,190 @@
+/* pages/index/index.wxss */
+
+/* 倒计时卡片 */
+.countdown-card {
+  background: linear-gradient(135deg, #b8d0cc 0%, rgb(235, 129, 226) 100%);
+  color: #ffffff;
+  text-align: center;
+  padding: 15px;
+}
+
+.countdown-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.countdown-text {
+  /* 文字样式与天数统一 */
+}
+
+.countdown-item {
+  display: flex;
+  align-items: center;
+}
+
+.countdown-number {
+  font-size: 18px;
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 5px 12px;
+  border-radius: 6px;
+  min-width: 40px;
+  /* 移除原来的大字体，使用统一的字体大小 */
+}
+
+
+
+/* 轮播图 */
+.swiper-card {
+  padding: 0;
+  margin: 15px 15px 0 15px;
+}
+
+.banner-image {
+  width: 100%;
+  height: 180px;
+  border-radius: 8px;
+}
+
+/* 功能模块网格 */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.grid-item {
+  width: 33.33%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 0;
+  box-sizing: border-box;
+}
+
+.grid-icon {
+  width: 60px;
+  height: 60px;
+  background-color: #f5f5f5;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.grid-icon image {
+  width: 36px;
+  height: 36px;
+}
+
+.grid-text {
+  font-size: 14px;
+  color: #333333;
+  text-align: center;
+}
+
+/* 今日推荐 */
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333333;
+  margin: 15px 15px 10px 15px;
+}
+
+.recommend-list {
+  padding: 0 15px 15px 15px;
+}
+
+.recommend-item {
+  display: flex;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.recommend-item:last-child {
+  border-bottom: none;
+}
+
+.recommend-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.recommend-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.recommend-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333333;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.recommend-desc {
+  font-size: 12px;
+  color: #999999;
+  margin: 5px 0;
+}
+
+.recommend-tag {
+  font-size: 12px;
+  color: #667eea;
+  background-color: rgba(102, 126, 234, 0.1);
+  padding: 2px 8px;
+  border-radius: 10px;
+  align-self: flex-start;
+}
+
+/* 适配不同屏幕尺寸 */
+@media (max-width: 375px) {
+  .countdown-content {
+    font-size: 16px;
+  }
+  
+  .countdown-number {
+    font-size: 16px;
+    min-width: 35px;
+    padding: 4px 10px;
+  }
+  
+  .banner-image {
+    height: 150px;
+  }
+  
+  .grid-icon {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .grid-icon image {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .grid-text {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 414px) {
+  .banner-image {
+    height: 200px;
+  }
+}

@@ -1,0 +1,72 @@
+<!-- pages/anki/anki.wxml -->
+<view class="page-container">
+  <view class="card-container">
+    <view class="section-title">Anki卡片</view>
+    <view class="anki-tabs">
+      <view class="tab-item {{activeTab === item.id ? 'active' : ''}}" wx:for="{{ankiTabs}}" wx:key="id" bindtap="switchTab" data-tab-id="{{item.id}}">
+        {{item.name}}
+      </view>
+    </view>
+  </view>
+
+  <view class="card-container">
+    <view class="anki-card" bindtap="flipCard">
+      <view class="card-inner" style="transform: rotateY({{isFlipped ? 180 : 0}}deg)">
+        <view class="card-front">
+          <view class="card-content">
+            <view class="card-icon">📝</view>
+            <view class="card-title">{{currentCard.question}}</view>
+            <view class="card-hint">点击卡片翻转</view>
+          </view>
+        </view>
+        <view class="card-back">
+          <view class="card-content">
+            <view class="card-answer">{{currentCard.answer}}</view>
+            <view class="card-hint">点击卡片翻转</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <view class="card-actions">
+      <view class="action-group">
+        <view class="action-btn wrong" bindtap="markCard" data-status="wrong">
+          <view class="action-icon">❌</view>
+          <view class="action-text">不认识</view>
+        </view>
+        <view class="action-btn hard" bindtap="markCard" data-status="hard">
+          <view class="action-icon">⚠️</view>
+          <view class="action-text">有点难</view>
+        </view>
+        <view class="action-btn good" bindtap="markCard" data-status="good">
+          <view class="action-icon">✅</view>
+          <view class="action-text">认识</view>
+        </view>
+        <view class="action-btn easy" bindtap="markCard" data-status="easy">
+          <view class="action-icon">🎉</view>
+          <view class="action-text">很简单</view>
+        </view>
+      </view>
+    </view>
+    
+    <view class="card-progress">
+      <view class="progress-text">第{{currentIndex + 1}}张 / 共{{cardList.length}}张</view>
+      <view class="progress-bar">
+        <view class="progress-fill" style="width: {{(currentIndex + 1) / cardList.length * 100}}%"></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="card-container">
+    <view class="section-title">卡片组管理</view>
+    <view class="deck-list">
+      <view class="deck-item" wx:for="{{deckList}}" wx:key="id" bindtap="selectDeck" data-deck-id="{{item.id}}">
+        <view class="deck-info">
+          <view class="deck-name">{{item.name}}</view>
+          <view class="deck-count">{{item.count}}张卡片</view>
+        </view>
+        <view class="deck-arrow">→</view>
+      </view>
+    </view>
+  </view>
+</view>

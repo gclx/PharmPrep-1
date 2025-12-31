@@ -1,0 +1,57 @@
+<!-- pages/term/term.wxml -->
+<view class="page-container">
+  <view class="card-container">
+    <view class="section-title">名词解释带背</view>
+    <view class="term-tabs">
+      <view class="tab-item {{activeTab === item.id ? 'active' : ''}}" wx:for="{{termTabs}}" wx:key="id" bindtap="switchTab" data-tab-id="{{item.id}}">
+        {{item.name}}
+      </view>
+    </view>
+  </view>
+
+  <view class="card-container">
+    <view class="term-card">
+      <view class="term-header">
+        <view class="term-index">{{currentIndex + 1}}/{{termList.length}}</view>
+        <view class="term-actions">
+          <view class="action-btn play" bindtap="playAudio">🔊</view>
+          <view class="action-btn collect" bindtap="collectTerm" data-is-collected="{{isCollected}}">
+            {{isCollected ? '❤️' : '🤍'}}
+          </view>
+        </view>
+      </view>
+      
+      <view class="term-content">
+        <view class="term-word">{{currentTerm.word}}</view>
+        <view class="term-explanation">{{currentTerm.explanation}}</view>
+      </view>
+      
+      <view class="term-nav">
+        <view class="nav-btn prev" bindtap="prevTerm" wx:if="{{currentIndex > 0}}">上一个</view>
+        <view class="nav-btn next" bindtap="nextTerm" wx:if="{{currentIndex < termList.length - 1}}">下一个</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="card-container">
+    <view class="section-title">学习统计</view>
+    <view class="stats-grid">
+      <view class="stat-item">
+        <view class="stat-value">{{learnedCount}}</view>
+        <view class="stat-label">已学</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-value">{{collectedCount}}</view>
+        <view class="stat-label">收藏</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-value">{{termList.length}}</view>
+        <view class="stat-label">总数量</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-value">{{progress}}%</view>
+        <view class="stat-label">进度</view>
+      </view>
+    </view>
+  </view>
+</view>

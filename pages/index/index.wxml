@@ -1,0 +1,79 @@
+<!-- pages/index/index.wxml -->
+<view class="page-container">
+  <!-- 考研倒计时卡片 -->
+  <view class="card-container countdown-card">
+    <view class="countdown-content">
+      <view class="countdown-text">2026考研倒计时</view>
+      <view class="countdown-item">
+        <view class="countdown-number">{{countdown.days}}</view>
+      </view>
+      <view class="countdown-text">天</view>
+    </view>
+  </view>
+
+  <!-- 广告轮播图 -->
+  <view class="card-container swiper-card">
+    <swiper indicator-dots="{{true}}" autoplay="{{true}}" interval="3000" duration="1000">
+      <swiper-item wx:for="{{bannerList}}" wx:key="id">
+        <image src="{{item.imageUrl}}" class="banner-image" bindtap="onBannerTap" data-banner-id="{{item.id}}"></image>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <!-- 功能模块网格 -->
+  <view class="card-container">
+    <view class="grid">
+      <view class="grid-item" bindtap="navigateToExercise">
+        <view class="grid-icon">
+          <image src="/images/icons/exercise.png" mode="aspectFit"></image>
+        </view>
+        <view class="grid-text">习题选择速刷</view>
+      </view>
+      <view class="grid-item" bindtap="navigateToEssay">
+        <view class="grid-icon">
+          <image src="/images/icons/essay.png" mode="aspectFit"></image>
+        </view>
+        <view class="grid-text">习题大题带背</view>
+      </view>
+      <view class="grid-item" bindtap="navigateToTrueExam">
+        <view class="grid-icon">
+          <image src="/images/icons/true-exam.png" mode="aspectFit"></image>
+        </view>
+        <view class="grid-text">高校真题合集</view>
+      </view>
+      <view class="grid-item" bindtap="navigateToKnowledge">
+        <view class="grid-icon">
+          <image src="/images/icons/knowledge.png" mode="aspectFit"></image>
+        </view>
+        <view class="grid-text">知识点速记</view>
+      </view>
+      <view class="grid-item" bindtap="navigateToAnki">
+        <view class="grid-icon">
+          <image src="/images/icons/anki.png" mode="aspectFit"></image>
+        </view>
+        <view class="grid-text">Anki卡片</view>
+      </view>
+      <view class="grid-item" bindtap="navigateToTerm">
+        <view class="grid-icon">
+          <image src="/images/icons/term.png" mode="aspectFit"></image>
+        </view>
+        <view class="grid-text">名词解释带背</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 今日推荐 -->
+  <view class="card-container">
+    <view class="section-title">今日推荐</view>
+    <view class="recommend-list">
+      <view class="recommend-item" wx:for="{{recommendList}}" wx:key="id">
+        <image src="{{item.imageUrl}}" class="recommend-image"></image>
+        <view class="recommend-content">
+          <view class="recommend-title">{{item.title}}</view>
+          <view class="recommend-desc">{{item.desc}}</view>
+          <view class="recommend-tag">{{item.tag}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
