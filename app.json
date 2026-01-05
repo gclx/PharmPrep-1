@@ -2,6 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/exercise/exercise",
+    "pages/exercise/exerciseDetail",
     "pages/essay/essay",
     "pages/trueExam/trueExam",
     "pages/knowledge/knowledge",

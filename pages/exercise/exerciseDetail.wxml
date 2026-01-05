@@ -1,0 +1,76 @@
+<!-- pages/exercise/exerciseDetail.wxml -->
+<view class="page-container">
+  <!-- 顶部进度栏 -->
+  <view class="header-bar">
+    <view class="progress-info">
+      <text class="current-index">{{currentIndex + 1}}</text>
+      <text class="total-count">/{{totalCount}}</text>
+    </view>
+    <view class="right-actions">
+      <view class="action-item" bindtap="toggleFavorite">
+        <text class="action-icon">{{isFavorite ? '★' : '☆'}}</text>
+        <text>收藏</text>
+      </view>
+      <view class="action-item" bindtap="showCard">
+        <text class="action-icon">📑</text>
+        <text>答题卡</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 题目内容区域 -->
+  <scroll-view scroll-y class="question-scroll" enable-flex>
+    <view class="question-card">
+      <view class="question-header">
+        <view class="question-type">{{questionTypeMap[currentQuestion.type]}}</view>
+        <view class="question-title">{{currentQuestion.title}}</view>
+      </view>
+
+      <!-- 选项列表 -->
+      <view class="options-list {{currentQuestion.type === 3 ? 'horizontal' : ''}}">
+        <view 
+          class="option-item {{item.selected ? 'selected' : ''}} {{showAnswer && item.isCorrect ? 'correct' : ''}} {{showAnswer && item.selected && !item.isCorrect ? 'wrong' : ''}}"
+          wx:for="{{currentQuestion.options}}" 
+          wx:key="id"
+          bindtap="selectOption"
+          data-id="{{item.id}}"
+        >
+          <view class="option-label">{{item.label}}</view>
+          <view class="option-content">{{item.content}}</view>
+        </view>
+      </view>
+
+      <!-- 答案解析区域 -->
+      <view class="analysis-section" wx:if="{{showAnswer}}">
+        <view class="result-row">
+          <view class="result-item">
+            <text class="label">正确答案：</text>
+            <text class="value correct-text">{{currentQuestion.correctAnswer}}</text>
+          </view>
+          <view class="result-item">
+            <text class="label">你的答案：</text>
+            <text class="value {{isCorrect ? 'correct-text' : 'wrong-text'}}">{{userAnswer || '未作答'}}</text>
+          </view>
+        </view>
+        <view class="analysis-content">
+          <view class="analysis-title">解析</view>
+          <view class="analysis-text">{{currentQuestion.analysis}}</view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar">
+    <view class="btn-wrapper left">
+      <view class="nav-btn {{currentIndex === 0 ? 'disabled' : ''}}" bindtap="prevQuestion">上一题</view>
+    </view>
+    <view class="btn-wrapper center">
+      <view class="action-btn" bindtap="toggleAnswer" wx:if="{{!showAnswer}}">查看解析</view>
+      <view class="action-btn" bindtap="nextQuestion" wx:if="{{showAnswer}}">{{currentIndex === totalCount - 1 ? '返回首页' : '下一题'}}</view>
+    </view>
+    <view class="btn-wrapper right">
+      <view class="nav-btn" bindtap="nextQuestion">{{currentIndex === totalCount - 1 ? '返回首页' : '下一题'}}</view>
+    </view>
+  </view>
+</view>
