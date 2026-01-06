@@ -1,5 +1,17 @@
 /* pages/exercise/exercise.wxss */
 
+/* 模块标题样式 */
+.section-title {
+  display: inline-block;
+  background-color: #e8f4fd;
+  color: #3498db;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 8px;
+  margin: 10px 15px 8px 15px;
+}
+
 /* 科目列表 */
 .subject-list {
   padding: 10px 0;

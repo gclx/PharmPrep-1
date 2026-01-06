@@ -69,14 +69,23 @@ Page({
 
   // 计算倒计时 - 只精确到天
   calculateCountdown(examDate) {
-    // 重置时间到当天零点，避免时间差影响天数计算
+    const parseDate = (str) => {
+      if (!str) return null
+      const parts = str.split('-')
+      if (parts.length === 3) {
+        const y = parseInt(parts[0], 10)
+        const m = parseInt(parts[1], 10) - 1
+        const d = parseInt(parts[2], 10)
+        return new Date(y, m, d, 0, 0, 0, 0)
+      }
+      return null
+    }
+
     const now = new Date()
     now.setHours(0, 0, 0, 0)
-    
-    const exam = new Date(examDate)
-    exam.setHours(0, 0, 0, 0)
-    
-    const diff = exam - now
+
+    const exam = parseDate(examDate) || new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0, 0)
+    const diff = exam.getTime() - now.getTime()
     let days = 0
 
     if (diff > 0) {
@@ -98,11 +107,11 @@ Page({
 
     // 立即计算一次
     const app = getApp()
-    this.calculateCountdown(app.globalData.examDate)
+    this.calculateCountdown(app.globalData && app.globalData.examDate)
     
     // 每天更新一次（86400000毫秒 = 24小时）
     const timer = setInterval(() => {
-      this.calculateCountdown(app.globalData.examDate)
+      this.calculateCountdown(app.globalData && app.globalData.examDate)
     }, 86400000)
 
     this.setData({

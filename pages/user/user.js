@@ -1,6 +1,9 @@
 // pages/user/user.js
 Page({
   data: {
+    userInfo: {},
+    hasUserInfo: false,
+    canIUseGetUserProfile: false,
     totalQuestions: 0,
     correctQuestions: 0,
     accuracy: 0,
@@ -8,6 +11,13 @@ Page({
   },
 
   onLoad() {
+    // 检查是否支持 getUserProfile
+    if (wx.getUserProfile) {
+      this.setData({
+        canIUseGetUserProfile: true
+      })
+    }
+    
     // 页面加载时获取用户信息和学习统计数据
     this.loadUserInfo()
     this.loadStudyStats()
@@ -21,11 +31,52 @@ Page({
 
   // 加载用户信息
   loadUserInfo() {
-    // 这里可以从本地缓存或云数据库获取用户信息
-    // 暂时使用默认数据
+    // 从本地缓存获取用户信息
+    const userInfo = wx.getStorageSync('userInfo')
+    if (userInfo) {
+      this.setData({
+        userInfo,
+        hasUserInfo: true
+      })
+    }
   },
 
-  // 加载学习统计数据
+  // 获取用户信息（登录）
+  getUserProfile(e) {
+    wx.getUserProfile({
+      desc: '用于完善会员资料',
+      success: (res) => {
+        this.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true
+        })
+        wx.setStorageSync('userInfo', res.userInfo)
+      },
+      fail: (err) => {
+        console.error('获取用户信息失败', err)
+      }
+    })
+  },
+
+  // 点击用户信息区域
+  onTapUserInfo() {
+    if (!this.data.hasUserInfo) {
+      this.getUserProfile()
+    }
+  },
+
+  // 编辑用户资料
+  editUserInfo() {
+    if (!this.data.hasUserInfo) {
+      this.getUserProfile()
+      return
+    }
+    
+    wx.showToast({
+      title: '编辑资料功能开发中',
+      icon: 'none'
+    })
+  },
   loadStudyStats() {
     // 这里可以从本地缓存或云数据库获取学习统计数据
     // 暂时使用模拟数据
@@ -39,14 +90,6 @@ Page({
       correctQuestions,
       accuracy,
       studyDays
-    })
-  },
-
-  // 编辑用户资料
-  editUserInfo() {
-    wx.showToast({
-      title: '编辑资料功能开发中',
-      icon: 'none'
     })
   },
 

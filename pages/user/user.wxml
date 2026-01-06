@@ -2,12 +2,12 @@
 <view class="page-container">
   <!-- 用户信息卡片 -->
   <view class="card-container user-info-card">
-    <view class="user-avatar">
-      <image src="/images/avatar/default.png" mode="aspectFit"></image>
+    <view class="user-avatar" bindtap="onTapUserInfo">
+      <image src="{{hasUserInfo && userInfo.avatarUrl ? userInfo.avatarUrl : '/images/avatar/default.png'}}" mode="aspectFit"></image>
     </view>
-    <view class="user-detail">
-      <view class="user-name">药学考研用户</view>
-      <view class="user-desc">开始你的考研之旅吧！</view>
+    <view class="user-detail" bindtap="onTapUserInfo">
+      <view class="user-name">{{hasUserInfo && userInfo.nickName ? userInfo.nickName : '点击登陆'}}</view>
+      <view class="user-desc">{{hasUserInfo ? '开始你的考研之旅吧！' : '登录后同步学习数据'}}</view>
     </view>
     <view class="user-edit" bindtap="editUserInfo">
       <text class="edit-text">编辑资料</text>
